@@ -1,2 +1,13 @@
 # lifehack26_aurafarmers
-um. yeah.
+
+run 
+
+```bash
+npm install
+```
+
+to run the code
+
+```bash
+npm run dev
+```
