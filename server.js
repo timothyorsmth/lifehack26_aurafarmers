@@ -6,6 +6,7 @@
 import "dotenv/config";
 import express from "express";
 import OpenAI from "openai";
+import crypto from "crypto";
 
 // Import files (if any)
 
@@ -23,6 +24,7 @@ const openai = new OpenAI({
 //console.log("Key loaded:", Boolean(process.env.OPENAI_API_KEY));
 
 // Add the main post function calls
+// Search Agent
 app.post("/api/test", async (req, res) => {
   try {
     const result = await openai.responses.create({
@@ -38,6 +40,41 @@ app.post("/api/test", async (req, res) => {
     res.status(500).json({ error: "Agent request failed" });
   }
 });
+
+// Reccomendation Agent
+app.get("/api/recommendations/:userId", async (req, res) => {
+  try {
+    const { userId } = req.params;
+
+    const profile = await getUserProfile(userId);
+    const agentResult = await recommendationAgent(profile, products);
+
+    const recommendations = agentResult.recommendations
+      .map(item => {
+        const product = products.find(
+          product => product.id === item.productId
+        );
+
+        return product
+          ? { ...product, reason: item.reason }
+          : null;
+      })
+      .filter(Boolean);
+
+    res.json({
+      summary: agentResult.summary,
+      recommendations
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      error: "Could not generate recommendations"
+    });
+  }
+});
+
+// Connect pinterest (TO DO LATER)
+
 
 // Check if on the correct port 
 app.listen(3000, () => {

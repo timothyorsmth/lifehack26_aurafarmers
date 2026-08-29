@@ -5,11 +5,25 @@
 
 
 // Import other files
-import { askAgent } from "../agents/test_agent";
+import { searchAgent } from "../agents/SearchAgent";
 
-try {
-    const result = await askAgent("Hello");
-    console.log(result.output)
-} catch (error) {
+
+const form = document.getElementById("myForm");
+
+form.addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  const textFieldValue = document.getElementById("prompt").value;
+
+  console.log("Submitted:", textFieldValue);
+
+  try {
+    const result = await searchAgent(textFieldValue);
+    document.getElementById("responseBox").textContent = result.output;
+  } catch (error) {
     console.error(error);
-}
+  }
+});
+
+const response = await fetch(`/api/recommendations/${userId}`);
+const data = await response.json();
