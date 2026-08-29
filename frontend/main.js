@@ -4,17 +4,17 @@
 // ==============
 
 
-// Import other files
-import { askAgent } from "../agents/test_agent";
+import { getReccomendations } from "../agents/ReccomendationAgent.js";
+
+const userId = "YOUR-REAL-SUPABASE-USER-UUID";
 
 try {
-    const result = await askAgent("Hello");
-    console.log(result.output)
+  const data = await getReccomendations(userId);
+
+  console.log(data);
+
+  document.getElementById("responseBox").textContent =
+    data.summary;
 } catch (error) {
-    console.error(error);
+  console.error(error);
 }
-
-const response = await fetch("/api/products");
-const data = await response.json();
-
-console.log(data.products);
