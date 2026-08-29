@@ -1,2 +1,1 @@
-import './style.css'
-
+// Common file which lists all the dependencies
