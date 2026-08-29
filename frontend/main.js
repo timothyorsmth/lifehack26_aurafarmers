@@ -25,5 +25,11 @@ form.addEventListener("submit", async (event) => {
   }
 });
 
-const response = await fetch(`/api/recommendations/${userId}`);
+// const response = await fetch(`/api/recommendations/${userId}`);
+// const data = await response.json();
+
+const response = await fetch("/api/products");
 const data = await response.json();
+
+console.log(data.products);
+
