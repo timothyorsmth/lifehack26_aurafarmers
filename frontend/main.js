@@ -7,14 +7,9 @@
 // Import other files
 import { askAgent } from "../agents/test_agent";
 
-try {
-    const result = await askAgent("Hello");
-    console.log(result.output)
-} catch (error) {
-    console.error(error);
-}
-
 const response = await fetch("/api/products");
 const data = await response.json();
 
 console.log(data.products);
+
+
