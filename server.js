@@ -5,7 +5,7 @@ import OpenAI from "openai";
 import { supabase } from "./backend/supabase.js";
 import { getUniqloWomenProducts } from "./backend/sources/uniqlo.js";
 import { analyzeProductImage } from "./backend/analyser/analyzeProductImage.js";
-import { reccomendationBackend } from "./agents/ReccomendationAgent.js";
+import { recommendationAgent } from "./agents/ReccomendationAgent.js";
 
 // constants
 const MODEL = "gpt-5.6"
@@ -159,8 +159,8 @@ app.get("/api/recommendations/:userId", async (req, res) => {
   try {
     const { userId } = req.params;
 
-    const profile = await getUserProfile(userId);
-    const agentResult = await recommendationAgent(profile, products);
+    const products = await getProducts()
+    const agentResult = await recommendationAgent("", products, MODEL);
 
     const recommendations = agentResult.recommendations
       .map(item => {

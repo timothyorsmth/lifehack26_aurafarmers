@@ -1,5 +1,5 @@
 // Test AI agent :)
-export async function askAgent(message) {
+export async function searchAgent(message) {
   const response = await fetch("/api/test", { // Note the things after fetch
     method: "POST",
     headers: {

@@ -2,7 +2,7 @@
 import OpenAI from "openai";
 
 // Called by frontend
-export async function recommendationAgent(userId) {
+export async function getReccomendations(userId) {
   const response = await fetch(`/api/recommendations/${userId}`, {
     method: "GET",
     headers: {
@@ -24,7 +24,7 @@ export async function recommendationAgent(userId) {
 }
 
 // Called by backend idk what the fuck is this formatting i just need this to work rn
-export async function reccomendationBackend(profile, products, MODEL) {
+export async function recommendationAgent(profile, products, MODEL) {
     const openai = new OpenAI({
         apiKey: process.env.OPENAI_API_KEY
     });
