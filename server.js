@@ -10,8 +10,6 @@ import { recommendationAgent } from "./agents/ReccomendationAgent.js";
 // constants
 const MODEL = "gpt-5.6"
 
-import { getHMWomenProducts } from "./backend/sources/hm.js";
-
 const app = express();
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,

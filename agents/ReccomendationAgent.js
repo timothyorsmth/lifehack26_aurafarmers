@@ -73,6 +73,5 @@ export async function recommendationAgent(profile, products, MODEL) {
         ]
     });
 
-    console.log(completion.choices[0].message.content)
     return JSON.parse(completion.choices[0].message.content);
 }

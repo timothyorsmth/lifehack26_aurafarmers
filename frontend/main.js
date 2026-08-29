@@ -6,7 +6,7 @@
 
 import { getReccomendations } from "../agents/ReccomendationAgent.js";
 
-const userId = "YOUR-REAL-SUPABASE-USER-UUID";
+const userId = "TempUID";
 
 try {
   const data = await getReccomendations(userId);
